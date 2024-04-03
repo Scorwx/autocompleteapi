@@ -3,13 +3,12 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-@app.route('/api', methods=['GET'])
+@app.route('/api')
 def hello():
     args = request.args
     term = args.get("term")
     response = requests.get(f"https://www.enuygun.com/ucak-bileti/trip-autocomplete/?term={term}")
     data = response.json()
-
     airports = []
     for airport_info in data:
         airport = {
