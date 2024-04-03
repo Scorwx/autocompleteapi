@@ -1,5 +1,3 @@
-import requests
-from flask import Flask, request, jsonify
 import subprocess
 import importlib.util
 
@@ -21,6 +19,9 @@ for package in packages_to_check:
 
 print("Gerekli paketler yüklendi.")
 
+
+import requests
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
