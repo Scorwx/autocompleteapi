@@ -1,5 +1,16 @@
 import subprocess
+import sys
 import importlib.util
+
+def install_pip():
+    subprocess.check_call([sys.executable, "-m", "ensurepip"])
+
+try:
+    import pip
+    print("pip zaten yüklü.")
+except ImportError:
+    print("pip bulunamadı. Yükleniyor...")
+    install_pip()
 
 def install_package(package):
     subprocess.check_call(["pip", "install", package])
