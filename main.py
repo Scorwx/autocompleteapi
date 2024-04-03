@@ -1,5 +1,26 @@
 import requests
 from flask import Flask, request, jsonify
+import subprocess
+import importlib.util
+
+def install_package(package):
+    subprocess.check_call(["pip", "install", package])
+
+def check_and_install(package_name):
+    spec = importlib.util.find_spec(package_name)
+    if spec is None:
+        print(f"{package_name} paketi bulunamadı. Yükleniyor...")
+        install_package(package_name)
+    else:
+        print(f"{package_name} zaten yüklü.")
+
+packages_to_check = ["flask", "requests"]
+
+for package in packages_to_check:
+    check_and_install(package)
+
+print("Gerekli paketler yüklendi.")
+
 
 app = Flask(__name__)
 
